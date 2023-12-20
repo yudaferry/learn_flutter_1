@@ -32,9 +32,9 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
-  void _openAddOverlay() {
+  void _openAddOverlay(ctx) {
     showModalBottomSheet(
-      context: context,
+      context: ctx,
       builder: (ctx) => NewExpense(onAddExpense: _addExpense),
     );
   }
@@ -46,44 +46,60 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
+  void _removeExpenses(Expense expense) {
+    final expenseIndex = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Expense deleted'),
+        duration: const Duration(seconds: 3),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                _registeredExpenses.insert(expenseIndex, expense);
+              });
+            }),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green.shade400,
-          title: const Text('Expense Tracker'),
-          actions: [
-            IconButton(
-              onPressed: _openAddOverlay,
-              icon: const Icon(Icons.add),
-            ),
-          ],
-        ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.lightGreen.shade500,
-                Colors.lightGreen.shade300,
-                Colors.lightGreen.shade100,
-                Colors.lightGreen.shade300,
-                Colors.lightGreen.shade500,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+    Widget mainContent = const Center(
+      child: Text('No expsenses found !'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        onRemoveExpense: _removeExpenses,
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expense Tracker'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _openAddOverlay(context);
+            },
+            icon: const Icon(Icons.add),
           ),
-          child: Column(
-            children: [
-              const Text('The Chart'),
-              Expanded(
-                child: ExpensesList(expenses: _registeredExpenses),
-              ),
-            ],
+        ],
+      ),
+      body: Column(
+        children: [
+          const Text('The Chart'),
+          Expanded(
+            child: mainContent,
           ),
-        ),
+        ],
       ),
     );
   }

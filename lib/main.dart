@@ -29,13 +29,35 @@ class _AppListState extends State<AppList> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        floatingActionButton: CustomFloatingButton(
-          onClickMenu: setActiveWidget,
+    // return MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   home: Scaffold(
+    //     floatingActionButton: CustomFloatingButton(
+    //       onClickMenu: setActiveWidget,
+    //     ),
+    //     body: activeWidget,
+    //   ),
+    // );
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
         ),
-        body: activeWidget,
+        child: Stack(
+          children: [
+            activeWidget,
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: CustomFloatingButton(
+                  onClickMenu: setActiveWidget,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
