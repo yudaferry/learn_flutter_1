@@ -147,6 +147,21 @@ class _NewExpenseState extends State<NewExpense> {
           const SizedBox(height: 20),
           Row(
             children: [
+              // DropdownMenu(
+              //   initialSelection: _selectedCategory,
+              //   onSelected: (value) {
+              //     if (value == null) return;
+              //     setState(() => _selectedCategory = value);
+              //   },
+              //   dropdownMenuEntries: Category.values
+              //       .map(
+              //         (category) => DropdownMenuEntry(
+              //           value: category,
+              //           label: category.name.toUpperCase(),
+              //         ),
+              //       )
+              //       .toList(),
+              // ),
               DropdownButton(
                 value: _selectedCategory,
                 items: Category.values

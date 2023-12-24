@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:test_1/custom_floating_button.dart';
 import 'package:test_1/home_page.dart';
 import 'package:test_1/list_menu.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((fn) {
   runApp(const AppList());
+  // });
 }
 
 class AppList extends StatefulWidget {

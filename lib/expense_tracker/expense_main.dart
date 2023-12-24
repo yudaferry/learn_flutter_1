@@ -48,7 +48,7 @@ class ExpenseMain extends StatelessWidget {
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: kColorScheme.onPrimaryContainer,
-          foregroundColor: kColorScheme.primaryContainer,
+          foregroundColor: kColorScheme.primary,
         ),
         cardTheme: CardTheme(
           color: kColorScheme.primaryContainer,
@@ -59,29 +59,13 @@ class ExpenseMain extends StatelessWidget {
             backgroundColor: kColorScheme.primaryContainer,
           ),
         ),
-        textTheme: const TextTheme().copyWith(
-          titleLarge: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 16,
-          ),
-          bodyMedium: TextStyle(
-            fontWeight: FontWeight.normal,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 14,
-          ),
-        ),
-        // dropdownMenuTheme: const DropdownMenuThemeData().copyWith(
-        //   textStyle: TextStyle(color: kColorScheme.primaryContainer),
-        //   menuStyle: MenuStyle(
-        //     backgroundColor: MaterialStateProperty.resolveWith((states) {
-        //       if (states.contains(MaterialState.pressed)) {
-        //         return kColorScheme.onPrimaryContainer;
-        //       }
-        //       return kColorScheme.onSecondaryContainer;
-        //     }),
-        //   ),
-        // ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.primary,
+                fontSize: 16,
+              ),
+            ),
       ),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
