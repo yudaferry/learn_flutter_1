@@ -4,7 +4,7 @@ import 'package:test_1/image_roller/image_roller.dart';
 class GradientContainer extends StatelessWidget {
   // const GradientContainer({super.key, required this.gradientColors});
   // final List<Color> gradientColors;
-  GradientContainer(this.gradientColors, this.darkMode, {super.key});
+  const GradientContainer(this.gradientColors, this.darkMode, {super.key});
   GradientContainer.darkMode({super.key})
       : gradientColors = [
           Colors.black87,
