@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:flutter/services.dart';
 import 'package:test_1/custom_floating_button.dart';
 import 'package:test_1/home_page.dart';
@@ -9,7 +10,7 @@ void main() {
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
   // ]).then((fn) {
-  runApp(const AppList());
+  runApp(const ProviderScope(child: AppList()));
   // });
 }
 
